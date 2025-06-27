@@ -22,3 +22,8 @@ webserver/scripts/ethercat
 
 # Runtime directories
 .venv
+
+*.o
+*.a
+
+utils

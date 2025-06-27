@@ -259,7 +259,7 @@ if [ -d "/docker_persistent" ]; then
     cp -n /dev/null /docker_persistent/mbconfig.cfg
 fi
 cd "$OPENPLC_DIR/webserver"
-"$OPENPLC_DIR/.venv/bin/python3" webserver.py
+sleep inf
 EOF
     chmod a+x "$OPENPLC_DIR/start_openplc.sh"
     cd "$OPENPLC_DIR"

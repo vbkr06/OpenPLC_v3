@@ -149,6 +149,11 @@ class runtime:
             # Start compilation
             a = subprocess.Popen(['./scripts/compile_program.sh', str(st_file)], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
             compilation_object = NonBlockingStreamReader(a.stdout)
+            a.wait()
+            while compilation_object != None:
+                line = compilation_object.readline()
+                if not line: break
+                print(line)
         else:
             # Debug info was extracted from program
             program = '\n'.join(program_lines)
