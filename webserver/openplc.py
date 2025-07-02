@@ -154,6 +154,8 @@ class runtime:
                 line = compilation_object.readline()
                 if not line: break
                 print(line)
+            
+            return a.returncode
         else:
             # Debug info was extracted from program
             program = '\n'.join(program_lines)

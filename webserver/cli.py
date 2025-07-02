@@ -7,6 +7,7 @@ import openplc
 import time
 import argparse
 import random
+import sys
 
 openplc_runtime = openplc.runtime()
 
@@ -197,10 +198,8 @@ def compile_program(st_file):
     global openplc_runtime
     
     delete_persistent_file()
-    openplc_runtime.compile_program(st_file)
-    
-    return None
-    
+    return openplc_runtime.compile_program(st_file)
+        
 def compilation_logs():
     return openplc_runtime.compilation_status()
 
@@ -430,11 +429,14 @@ if __name__ == '__main__':
         #st_file = file.read()
         #st_file = st_file.replace('\r','').replace('\n','')
 
-        compile_program(st_file=args.input_file)
+
+
+        if compile_program(st_file=args.input_file) != 0:
+            sys.exit(1)
 
     elif args.action == 'execute':
         
-        st_file = args.input_file
+        st_file = args.input_file# + '/main.st'
         
         database = "openplc.db"
         conn = create_connection(database)
